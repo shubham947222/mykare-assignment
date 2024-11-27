@@ -9,6 +9,14 @@ const LoginPage = () => {
   const router = useRouter();
 
   const handleRegister = () => {
+    if(username.length==0){
+      alert("Username required")
+      return
+    }
+    if(password.length==0){
+      alert("Passworrd required")
+      return
+    }
     const users = JSON.parse(localStorage.getItem("users") || "[]");
     if (users.some((user) => user.username === username)) {
       alert("User already exists!");
@@ -20,6 +28,14 @@ const LoginPage = () => {
   };
 
   const handleLogin = () => {
+    if(username.length==0){
+      alert("Username required")
+      return
+    }
+    if(password.length==0){
+      alert("Passwprrd required")
+      return
+    }
     const users = JSON?.parse(localStorage.getItem("users") || "[]");
     if (username === "admin" && password === "admin") {
       login("admin");
@@ -43,6 +59,7 @@ const LoginPage = () => {
       <input
         type="text"
         placeholder="Username"
+        required
         className="w-full p-3 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
@@ -50,6 +67,7 @@ const LoginPage = () => {
       <input
         type="password"
         placeholder="Password"
+        required
         className="w-full p-3 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
